@@ -1,0 +1,7 @@
+.layOut {
+  height: 100%;
+  background-color: red;
+  padding: 2.5rem;
+  gap: 2.5rem;
+  display: flex;
+}

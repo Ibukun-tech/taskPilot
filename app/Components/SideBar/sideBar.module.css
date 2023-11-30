@@ -1,5 +1,6 @@
 .sideBar {
   background-color: #212121;
+  height: 100%;
   width: 15rem;
   position: relative;
   border: 2px solid rgba(249, 249, 249, 0.08);
@@ -58,7 +59,7 @@
   align-items: center;
   gap: 10px;
   padding-left: 2.1rem;
-  padding: 0.6rem 1rem;
+  padding: 0.4rem 1rem;
 }
 .sideNavItem::after {
   content: " ";

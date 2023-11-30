@@ -22,8 +22,8 @@ const SideBar = () => {
         <div>
           <Image
             className={styles.sideImage}
-            width={70}
-            height={70}
+            width={50}
+            height={50}
             src={ima}
             alt={""}
           />
@@ -52,7 +52,7 @@ const SideBar = () => {
           );
         })}
       </ul>
-      <div></div>
+      <div>stuff</div>
     </div>
   );
 };

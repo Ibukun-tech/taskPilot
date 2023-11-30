@@ -1,0 +1,12 @@
+.all {
+  padding: 2rem;
+  width: 100%;
+  background-color: #212121;
+  height: 100%;
+  overflow-y: auto;
+  border-radius: 1rem;
+  border: 2px solid rgba(249, 249, 249, 0.08);
+}
+.all::-webkit-scrollbar {
+  width: 0.5rem;
+}

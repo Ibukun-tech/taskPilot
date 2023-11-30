@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { useContext } from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import styles from "./layout.module.css";
-import ContextProvider from "./Components/Context/contextProvider";
+import { StoreProvider as Provider } from "./Components/Context/StoreProvider";
+// import ContextProvider from "./Components/Context/ContextProvider";
 import SideBar from "./Components/SideBar/SideBar";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,12 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ContextProvider>
+        <Provider>
           <div className={styles.layOut}>
             <SideBar />
             {children}
           </div>
-        </ContextProvider>
+        </Provider>
       </body>
     </html>
   );

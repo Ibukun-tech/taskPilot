@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
-
+import axios from "axios";
+import toast from "react-hot-toast";
 const Form = () => {
   const [title, setTitle] = useState("");
   const [decription, setDecription] = useState("");
@@ -20,7 +21,6 @@ const Form = () => {
         setDate(e.target.value);
         break;
       case "complete":
-        console.log(e.target.checked);
         setIsCompleted(e.target.checked);
         break;
       case "important":
@@ -28,8 +28,25 @@ const Form = () => {
         break;
     }
   };
+  const submitHandler = async (e: any) => {
+    e.preventDefault();
+    const task = {
+      title,
+      decription,
+      date,
+      isCompleted,
+      isImportant,
+    };
+    try {
+      const res = await axios.post("/api/tasks", task);
+      if (res.data.error) {
+        toast.error(res.data.error);
+      }
+      toast.success("Task created successfully");
+    } catch {}
+  };
   return (
-    <div className={{ styles: "color:black;" }}>
+    <form onSubmit={submitHandler}>
       <h1>Create a task</h1>
       <div>
         <label htmlFor="title">Title</label>
@@ -88,7 +105,10 @@ const Form = () => {
           }}
         />
       </div>
-    </div>
+      <div>
+        <button>Submit</button>
+      </div>
+    </form>
   );
 };
 

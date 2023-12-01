@@ -23,8 +23,26 @@ export async function POST(req: Request, res: Response) {
         userId,
       },
     });
-    return NextResponse.json({task, status:"201"})
+    return NextResponse.json({ task, status: "201" });
   } catch (err) {
     return NextResponse.json({ error: err, status: "500" });
+  }
+}
+
+export async function GET(req: Request, res: Response) {
+  try {
+    const { userId } = auth();
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized", status: "401" });
+    }
+    const task = await prisma.task.findMany({
+      where: {
+        userId,
+      },
+    });
+    return NextResponse.json(task);
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json({ error: err });
   }
 }

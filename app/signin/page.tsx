@@ -5,6 +5,7 @@ import React from "react";
 type Props = {};
 
 const page = (props: Props) => {
+  console.log("sign in");
   return (
     <div>
       <SignIn />

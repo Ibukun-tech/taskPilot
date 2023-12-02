@@ -25,7 +25,8 @@ export const StoreProvider = ({ children }: Props) => {
   const getAllTask = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.get("/api/tasks");
+      const res = await axios.get("/api");
+      console.log(res);
       setAllTask(res.data);
       setIsLoading(false);
     } catch (err) {

@@ -38,12 +38,15 @@ const Form = () => {
       isImportant,
     };
     try {
-      const res = await axios.post("/api/tasks", task);
+      const res = await axios.post("/api", task);
       if (res.data.error) {
         toast.error(res.data.error);
       }
       toast.success("Task created successfully");
-    } catch {}
+    } catch (error) {
+      console.log(error);
+      toast.error("not created the task");
+    }
   };
   return (
     <form onSubmit={submitHandler}>
@@ -106,7 +109,7 @@ const Form = () => {
         />
       </div>
       <div>
-        <button>Submit</button>
+        <button>Submitnnenene</button>
       </div>
     </form>
   );

@@ -1,15 +1,23 @@
-import { PrismaClient } from "@prisma/client";
-let prisma: PrismaClient;
+import mongoose from "mongoose";
 
-if (process.env.NODE_ENV === "production") {
-  prisma = new PrismaClient();
-} else {
-  // @ts-ignore
-  if (!global.prisma) {
-    //@ts-ignore
-    global.prisma = new PrismaClient();
+export const startDatabase = async () => {
+  try {
+    await mongoose.connect(
+      "mongodb+srv://taskpilot:Ibukun@cluster0.wlgr0bb.mongodb.net/"
+    );
+    // console.log(res);
+    console.log("succesful connected");
+  } catch (error) {
+    console.log(error);
   }
-  // @ts-ignore
-  prisma = global.prisma;
-}
-export default prisma;
+};
+const schema = new mongoose.Schema({
+  title: String,
+  description: String,
+  date: String,
+  isCompleted: { type: Boolean, default: false },
+  isImportant: { type: Boolean, default: false },
+  userId: String,
+});
+
+export const Model = mongoose.model("Model", schema) || mongoose.Model;

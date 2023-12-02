@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 const Form = () => {
   const [title, setTitle] = useState("");
   const [decription, setDecription] = useState("");
@@ -42,6 +42,7 @@ const Form = () => {
       if (res.data.error) {
         toast.error(res.data.error);
       }
+      console.log(res);
       toast.success("Task created successfully");
     } catch (error) {
       console.log(error);
@@ -51,6 +52,7 @@ const Form = () => {
   return (
     <form onSubmit={submitHandler}>
       <h1>Create a task</h1>
+      <Toaster />
       <div>
         <label htmlFor="title">Title</label>
         <input

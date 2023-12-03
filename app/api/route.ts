@@ -1,14 +1,6 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-// import prisma from "@/app/utils/connect";
-import { startDatabase, Model } from "../utils/connect";
-let value = false;
-async function mark() {
-  if (!value) await startDatabase();
-  value = true;
-}
-console.log(value);
-mark();
+import prisma from "@/app/utils/connect";
 export async function POST(req: Request) {
   try {
     const { userId } = auth();
@@ -16,20 +8,34 @@ export async function POST(req: Request) {
     if (!userId) {
       return NextResponse.json({ status: "you are not authorised" });
     }
-    console.log(req);
     const { title, decription, date, isCompleted, isImportant } =
       await req.json();
+
     if (!title || !decription || !date) {
-      return NextResponse.json({ error: "missing someRequired fields" });
+      return NextResponse.json({
+        error: "missing someRequired fields",
+        status: "400",
+      });
     }
-    const task = await Model.create({
-      title: title,
-      description: decription,
-      date: date,
-      isCompleted: isCompleted,
-      userId: userId,
+    console.log(title, decription, "its here");
+    if (title.length < 3) {
+      return NextResponse.json({
+        error: "Title must be at least 3 characters long",
+        status: "400",
+      });
+    }
+    const task = await prisma.task.create({
+      data: {
+        title,
+        decription: decription,
+        date,
+        isCompleted,
+        isImportant,
+        userId,
+      },
     });
-    return NextResponse.json({ task, status: "201" });
+    console.log(task);
+    return NextResponse.json(task);
   } catch (err) {
     return NextResponse.json({ error: err, status: "500" });
   }
@@ -39,13 +45,16 @@ export async function GET(req: Request, res: Response) {
   console.log("I am about to get something");
   try {
     const { userId } = auth();
-    console.log(userId);
+    // console.log(userId);
     if (!userId) {
       return NextResponse.json({ error: "Unauthorized", status: "401" });
     }
-    const task = await Model.find({
-      userId: userId,
+    const task = await prisma.task.findMany({
+      where: {
+        userId,
+      },
     });
+    console.log(task);
     return NextResponse.json(task);
   } catch (err) {
     console.log(err);

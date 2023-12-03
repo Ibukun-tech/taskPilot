@@ -9,10 +9,11 @@ interface Props {
 }
 export default function Home({ title }: Props) {
   const { task } = useContext(StoreContext);
+  console.log(task);
   return (
     <div className={styles.all}>
       {<Form />}
-      <h1>{title}</h1>
+      {/* <h1>{title}</h1>
       <div className={styles.tasks}>
         {task.map((tk: any) => {
           return (
@@ -25,7 +26,7 @@ export default function Home({ title }: Props) {
             </div>
           );
         })}
-      </div>
+      </div> */}
     </div>
   );
 }

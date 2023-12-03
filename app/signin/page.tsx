@@ -6,8 +6,10 @@ type Props = {};
 
 const page = (props: Props) => {
   console.log("sign in");
+
   return (
     <div>
+      sign in page
       <SignIn />
     </div>
   );

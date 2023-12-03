@@ -12,7 +12,6 @@ import toast from "react-hot-toast";
 
 export const StoreContext = createContext({
   increaseHandler: () => {},
-  value: {},
   task: [],
 });
 interface Props {
@@ -41,7 +40,6 @@ export const StoreProvider = ({ children }: Props) => {
   const increaseHandler = () => {};
   const value = {
     increaseHandler: increaseHandler,
-    value: theme,
     task: allTask,
   };
   return (

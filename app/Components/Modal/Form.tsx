@@ -41,12 +41,12 @@ const Form = () => {
       const res = await axios.post("/api", task);
       if (res.data.error) {
         toast.error(res.data.error);
+      } else {
+        toast.success("Task created successfully");
       }
-      console.log(res);
-      toast.success("Task created successfully");
     } catch (error) {
       console.log(error);
-      toast.error("not created the task");
+      toast.error("Task not created");
     }
   };
   return (

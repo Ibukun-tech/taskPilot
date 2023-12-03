@@ -7,6 +7,43 @@
   border-radius: 1rem;
   border: 2px solid rgba(249, 249, 249, 0.08);
 }
+.layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
 .all::-webkit-scrollbar {
   width: 0.5rem;
+}
+
+.title {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: 800;
+  position: relative;
+}
+.title::after {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 3rem;
+  height: 0.2rem;
+  border-radius: 0.5rem;
+  background-color: #6fcf97;
+}
+.addNewTask {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  height: 16rem;
+  width: 16rem;
+  color: #b2becd;
+  font-weight: 600;
+  border-radius: 1rem;
+  border: 3px dashed #2a2e35;
+  cursor: pointer;
+}
+.addNewTask:hover {
+  background-color: #2a2e35;
+  color: #f8f8f8;
 }

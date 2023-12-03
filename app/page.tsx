@@ -1,4 +1,6 @@
 "use client";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faEdit, faAdd } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import Form from "./Components/Modal/Form";
 import { useContext } from "react";
@@ -12,21 +14,39 @@ export default function Home({ title }: Props) {
   console.log(task);
   return (
     <div className={styles.all}>
-      {<Form />}
-      {/* <h1>{title}</h1>
-      <div className={styles.tasks}>
-        {task.map((tk: any) => {
-          return (
-            <div className={styles.task} id={tk._id}>
-              <h2>{tk.title}</h2>
-              <p>{tk.description}</p>
-              <p>{tk.date}</p>
-              <p>{tk.isCompleted}</p>
-              <p>{tk.isImportant}</p>
-            </div>
-          );
-        })}
-      </div> */}
+      {/* {<Form />} */}
+      <h1 className={styles.title}>All Task</h1>
+      <div className={styles.layout}>
+        <div className={styles.tasks}>
+          {task.map((tk: any) => {
+            return (
+              <div className={styles.task} id={tk._id}>
+                <h2>{tk.title}</h2>
+                <p>{tk.decription}</p>
+                <p>{tk.date}</p>
+                <div className={styles.taskFooter}>
+                  {tk.isCompleted ? (
+                    <button className={styles.taskCompleted}>Completed</button>
+                  ) : (
+                    <button className={styles.taskNotCompleted}>
+                      Not Completed
+                    </button>
+                  )}
+                  <button className={styles.taskFooterEdit}>
+                    {<FontAwesomeIcon icon={faEdit} />}
+                    {<FontAwesomeIcon icon={faTrash} />}
+                  </button>
+                </div>
+                <p>{tk.isImportant ? "important" : "not important"}</p>
+              </div>
+            );
+          })}
+          <div className={styles.addNewTask}>
+            {<FontAwesomeIcon icon={faAdd} />}
+            Add new task
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

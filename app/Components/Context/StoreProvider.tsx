@@ -9,6 +9,7 @@ import {
 import themes from "./themes";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useUser } from "@clerk/nextjs";
 
 export const StoreContext = createContext({
   increaseHandler: () => {},
@@ -18,6 +19,8 @@ interface Props {
   children: React.ReactNode;
 }
 export const StoreProvider = ({ children }: Props) => {
+  const { user } = useUser();
+  console.log(user);
   const [calue, setValue] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [allTask, setAllTask] = useState([]);
@@ -34,8 +37,8 @@ export const StoreProvider = ({ children }: Props) => {
     }
   };
   useEffect(() => {
-    getAllTask();
-  }, []);
+    if (user) getAllTask();
+  }, [user]);
   const theme = themes[calue];
   const increaseHandler = () => {};
   const value = {

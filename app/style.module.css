@@ -7,10 +7,6 @@
   border-radius: 1rem;
   border: 2px solid rgba(249, 249, 249, 0.08);
 }
-.layout {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-}
 .all::-webkit-scrollbar {
   width: 0.5rem;
 }
@@ -29,6 +25,53 @@
   height: 0.2rem;
   border-radius: 0.5rem;
   background-color: #6fcf97;
+}
+.tasks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.task {
+  padding: 1.2rem 1rem;
+  border-radius: 1rem;
+  background-color: rgba(249, 249, 249, 0.08);
+  box-shadow: 1px 7px 12px rgba(8, 18, 69, 0.1);
+  border: 2px solid white;
+  height: 16rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.taskDate {
+  margin-top: auto;
+}
+.taskTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.taskFooter {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.taskbutton {
+}
+.taskFooterEdit {
+  display: flex;
+  gap: 15px;
+  margin-left: auto;
+  font-size: 25px;
+}
+.taskCompleted,
+.taskNotCompleted {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background-color: #fe6854;
+  border-radius: 30px;
+}
+.taskCompleted {
+  background-color: green;
 }
 .addNewTask {
   display: flex;

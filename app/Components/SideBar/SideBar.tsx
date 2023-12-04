@@ -1,4 +1,6 @@
 "use client";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import ima from "../../../public/gab.jpg";
 import { useContext } from "react";
 import { StoreContext } from "../Context/StoreProvider";
@@ -8,11 +10,18 @@ import styles from "./sideBar.module.css";
 import Menu from "../../utils/Meal";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useClerk } from "@clerk/nextjs";
 const SideBar = () => {
   const router = useRouter();
   const pathName = usePathname();
   const handleClick = (link: string) => {
     router.push(link);
+  };
+  const { signOut } = useClerk();
+  const signOutHandler = () => {
+    signOut(() => {
+      router.push("/signin");
+    });
   };
   // const { value } = useContext(StoreContext);
   return (
@@ -52,7 +61,10 @@ const SideBar = () => {
           );
         })}
       </ul>
-      <div>stuff</div>
+      <button onClick={signOutHandler} className={styles.sideBarButton}>
+        {<FontAwesomeIcon icon={faSignOut} />}
+        <p> Sign Out</p>
+      </button>
     </div>
   );
 };

@@ -93,3 +93,13 @@
   background-color: rgba(249, 249, 249, 0.08);
   color: rgba(249, 249, 249, 0.75);
 }
+.sideBarButton {
+  display: flex;
+  gap: 10px;
+  color: white;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.8rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+}

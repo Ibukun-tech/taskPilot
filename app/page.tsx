@@ -16,35 +16,33 @@ export default function Home({ title }: Props) {
     <div className={styles.all}>
       {/* {<Form />} */}
       <h1 className={styles.title}>All Task</h1>
-      <div className={styles.layout}>
-        <div className={styles.tasks}>
-          {task.map((tk: any) => {
-            return (
-              <div className={styles.task} id={tk._id}>
-                <h2>{tk.title}</h2>
-                <p>{tk.decription}</p>
-                <p>{tk.date}</p>
-                <div className={styles.taskFooter}>
-                  {tk.isCompleted ? (
-                    <button className={styles.taskCompleted}>Completed</button>
-                  ) : (
-                    <button className={styles.taskNotCompleted}>
-                      Not Completed
-                    </button>
-                  )}
-                  <button className={styles.taskFooterEdit}>
-                    {<FontAwesomeIcon icon={faEdit} />}
-                    {<FontAwesomeIcon icon={faTrash} />}
+      <div className={styles.tasks}>
+        {task.map((tk: any) => {
+          return (
+            <div className={styles.task} id={tk._id}>
+              <h2 className={styles.taskTitle}>{tk.title}</h2>
+              <p>{tk.decription}</p>
+              <p className={styles.taskDate}>{tk.date.replaceAll("-", "/")}</p>
+              <div className={styles.taskFooter}>
+                {tk.isCompleted ? (
+                  <button className={styles.taskCompleted}>Completed</button>
+                ) : (
+                  <button className={styles.taskNotCompleted}>
+                    Not Completed
                   </button>
-                </div>
-                <p>{tk.isImportant ? "important" : "not important"}</p>
+                )}
+                <button className={styles.taskFooterEdit}>
+                  {<FontAwesomeIcon icon={faEdit} />}
+                  {<FontAwesomeIcon icon={faTrash} />}
+                </button>
               </div>
-            );
-          })}
-          <div className={styles.addNewTask}>
-            {<FontAwesomeIcon icon={faAdd} />}
-            Add new task
-          </div>
+              <p>{tk.isImportant ? "important" : "not important"}</p>
+            </div>
+          );
+        })}
+        <div className={styles.addNewTask}>
+          {<FontAwesomeIcon icon={faAdd} />}
+          Add new task
         </div>
       </div>
     </div>

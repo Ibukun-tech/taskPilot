@@ -7,6 +7,68 @@
   border-radius: 1rem;
   border: 2px solid rgba(249, 249, 249, 0.08);
 }
-.completeAll:-webkit-scrollbar {
+.completeAll::-webkit-scrollbar {
   width: 0.5rem;
+}
+.title {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: 800;
+  position: relative;
+}
+.title::after {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 3rem;
+  height: 0.2rem;
+  border-radius: 0.5rem;
+  background-color: #6fcf97;
+}
+.completes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.complete {
+  padding: 1.2rem 1rem;
+  border-radius: 1rem;
+  background-color: rgba(249, 249, 249, 0.08);
+  box-shadow: 1px 7px 12px rgba(8, 18, 69, 0.1);
+  border: 2px solid white;
+  height: 16rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.completeDate {
+  margin-top: auto;
+}
+.completeTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.completeFooter {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.completebutton {
+}
+.completeFooterEdit {
+  display: flex;
+  gap: 15px;
+  margin-left: auto;
+  font-size: 25px;
+}
+.completeCompleted,
+.completeNotCompleted {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background-color: #fe6854;
+  border-radius: 30px;
+}
+.completeCompleted {
+  background-color: green;
 }

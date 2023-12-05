@@ -16,6 +16,8 @@ export const StoreContext = createContext({
   task: [],
   completedTask: [],
   deleteHandler: (id: string) => {},
+  incompletedTask: [],
+  importantTask: [],
 });
 interface Props {
   children: React.ReactNode;
@@ -51,14 +53,21 @@ export const StoreProvider = ({ children }: Props) => {
   useEffect(() => {
     if (user) getAllTask();
   }, [user]);
+
   // @ts-ignore
   const completedTask = allTask.filter((task) => task.isCompleted === true);
+  // @ts-ignore
+  const importantTask = allTask.filter((task) => task.isImportant === true);
+  // @ts-ignore
+  const incompletedTask = allTask.filter((task) => task.isCompleted !== true);
   const increaseHandler = () => {};
   const value = {
     increaseHandler: increaseHandler,
     task: allTask,
     deleteHandler: deleteHandler,
     completedTask: completedTask,
+    incompletedTask: incompletedTask,
+    importantTask: importantTask,
   };
   return (
     <StoreContext.Provider value={value}>{children}</StoreContext.Provider>

@@ -14,6 +14,8 @@ import { useUser } from "@clerk/nextjs";
 export const StoreContext = createContext({
   increaseHandler: () => {},
   task: [],
+  completedTask: [],
+  deleteHandler: (id: string) => {},
 });
 interface Props {
   children: React.ReactNode;
@@ -36,14 +38,27 @@ export const StoreProvider = ({ children }: Props) => {
       toast.error("something went wrong");
     }
   };
+  const deleteHandler = async (id: string) => {
+    try {
+      await axios.delete(`/api/${id}`);
+      toast.success("Its been deleted");
+      getAllTask();
+    } catch (error) {
+      console.log(error);
+      toast.error("SOMETHING WENT WRONG");
+    }
+  };
   useEffect(() => {
     if (user) getAllTask();
   }, [user]);
-  const theme = themes[calue];
+  // @ts-ignore
+  const completedTask = allTask.filter((task) => task.isCompleted === true);
   const increaseHandler = () => {};
   const value = {
     increaseHandler: increaseHandler,
     task: allTask,
+    deleteHandler: deleteHandler,
+    completedTask: completedTask,
   };
   return (
     <StoreContext.Provider value={value}>{children}</StoreContext.Provider>

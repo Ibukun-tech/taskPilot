@@ -4,10 +4,11 @@ import { useContext } from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import styles from "./layout.module.css";
+import { Toaster } from "react-hot-toast";
 import { StoreProvider as Provider } from "./Components/Context/StoreProvider";
 // import ContextProvider from "./Components/Context/ContextProvider";
 import SideBar from "./Components/SideBar/SideBar";
-import NextTopLoader from "nextjs-toploader";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -25,13 +26,8 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <NextTopLoader
-            height={2}
-            color="#27AE60"
-            easing="cubic-beizer(0.53, 0.21, 0,1)"
-            showSpinner={false}
-          />
           <Provider>
+            <Toaster />
             <div className={styles.layOut}>
               {userId && <SideBar />}
               <div className="w-full"> {children}</div>

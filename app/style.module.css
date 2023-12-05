@@ -7,7 +7,7 @@
   border-radius: 1rem;
   border: 2px solid rgba(249, 249, 249, 0.08);
 }
-.all::-webkit-scrollbar {
+.all:-webkit-scrollbar {
   width: 0.5rem;
 }
 

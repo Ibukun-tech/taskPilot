@@ -45,7 +45,7 @@ export async function GET(req: Request, res: Response) {
   console.log("I am about to get something");
   try {
     const { userId } = auth();
-    // console.log(userId);
+    console.log(userId);
     if (!userId) {
       return NextResponse.json({ error: "Unauthorized", status: "401" });
     }

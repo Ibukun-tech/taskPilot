@@ -37,9 +37,7 @@ const SideBar = () => {
             alt={""}
           />
         </div>
-        <div
-          className={`${styles.sideUserBtn} top-0 w-full h-full absolute z-20`}
-        >
+        <div className={`sideUserBtn top-0 w-full h-full absolute z-20`}>
           <UserButton />
         </div>
         <h1 className={styles.sideProfileName}>

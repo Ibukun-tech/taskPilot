@@ -10,7 +10,7 @@ import styles from "./sideBar.module.css";
 import Menu from "../../utils/Meal";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useClerk } from "@clerk/nextjs";
+import { UserButton, useClerk } from "@clerk/nextjs";
 const SideBar = () => {
   const router = useRouter();
   const pathName = usePathname();
@@ -36,6 +36,11 @@ const SideBar = () => {
             src={ima}
             alt={""}
           />
+        </div>
+        <div
+          className={`${styles.sideUserBtn} top-0 w-full h-full absolute z-20`}
+        >
+          <UserButton />
         </div>
         <h1 className={styles.sideProfileName}>
           <span>Ibk</span>

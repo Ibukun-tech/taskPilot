@@ -1,4 +1,5 @@
 "use client";
+import styles from "./form.module.css";
 import React, { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
@@ -50,7 +51,7 @@ const Form = () => {
     }
   };
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className={styles.container}>
       <h1>Create a task</h1>
       <Toaster />
       <div>

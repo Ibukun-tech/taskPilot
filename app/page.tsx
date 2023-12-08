@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit, faAdd } from "@fortawesome/free-solid-svg-icons";
 
 import Form from "./Components/Modal/Form";
+import Modal from "./Components/Modal/Modal";
 import { useContext } from "react";
 import { StoreContext } from "./Components/Context/StoreProvider";
 import styles from "./style.module.css";
@@ -11,13 +12,18 @@ interface Props {
   title: string;
 }
 export default function Home({ title }: Props) {
-  const { task, deleteHandler, updateTask } = useContext(StoreContext);
+  const { task, deleteHandler, updateTask, modal, modalOn } =
+    useContext(StoreContext);
   console.log(task);
-  const router = useRouter();
+  // const router = useRouter();
 
   return (
     <div className={styles.all}>
-      {/* {<Form />} */}
+      {modal && (
+        <Modal>
+          <Form />
+        </Modal>
+      )}
       <h1 className={styles.title}>All Task</h1>
       <div className={styles.tasks}>
         {task.map((tk: any) => {
@@ -64,7 +70,7 @@ export default function Home({ title }: Props) {
             </div>
           );
         })}
-        <div className={styles.addNewTask}>
+        <div className={styles.addNewTask} onClick={modalOn}>
           {<FontAwesomeIcon icon={faAdd} />}
           Add new task
         </div>

@@ -14,11 +14,14 @@ import { useUser } from "@clerk/nextjs";
 export const StoreContext = createContext({
   increaseHandler: () => {},
   task: [],
+  modalOff: () => {},
+  modalOn: () => {},
   completedTask: [],
   deleteHandler: (id: string) => {},
   incompletedTask: [],
   importantTask: [],
-  updateTask: (task: {}) => {},
+  updateTask: (task: any) => {},
+  modal: false,
 });
 interface Props {
   children: React.ReactNode;
@@ -54,7 +57,8 @@ export const StoreProvider = ({ children }: Props) => {
   useEffect(() => {
     if (user) getAllTask();
   }, [user]);
-  const updateTask = async (task: { id: string; isCompleted: Boolean }) => {
+  // @ts-ignore
+  const updateTask = async (task) => {
     try {
       await axios.put("/api", task);
       toast.success("task updated");
@@ -71,6 +75,14 @@ export const StoreProvider = ({ children }: Props) => {
   // @ts-ignore
   const incompletedTask = allTask.filter((task) => task.isCompleted !== true);
   const increaseHandler = () => {};
+
+  const [modal, setModal] = useState(true);
+  const modalOn = () => {
+    setModal(true);
+  };
+  const modalOff = () => {
+    setModal(false);
+  };
   const value = {
     increaseHandler: increaseHandler,
     task: allTask,
@@ -79,6 +91,9 @@ export const StoreProvider = ({ children }: Props) => {
     incompletedTask: incompletedTask,
     importantTask: importantTask,
     updateTask: updateTask,
+    modal: modal,
+    modalOff: modalOff,
+    modalOn: modalOn,
   };
   return (
     <StoreContext.Provider value={value}>{children}</StoreContext.Provider>

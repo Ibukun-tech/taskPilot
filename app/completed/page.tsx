@@ -9,7 +9,7 @@ import { useContext } from "react";
 type Props = {};
 
 const page = (props: Props) => {
-  const { completedTask, deleteHandler } = useContext(StoreContext);
+  const { completedTask, deleteHandler, updateTask } = useContext(StoreContext);
   console.log(completedTask);
   return (
     <div className={styles.completeAll}>
@@ -25,11 +25,21 @@ const page = (props: Props) => {
               </p>
               <div className={styles.completeFooter}>
                 {tk.isCompleted ? (
-                  <button className={styles.completeCompleted}>
+                  <button
+                    onClick={() => {
+                      updateTask({ id: tk.id, isCompleted: !tk.isCompleted });
+                    }}
+                    className={styles.completeCompleted}
+                  >
                     Completed
                   </button>
                 ) : (
-                  <button className={styles.completeNotCompleted}>
+                  <button
+                    onClick={() => {
+                      updateTask({ id: tk.id, isCompleted: !tk.isCompleted });
+                    }}
+                    className={styles.completeNotCompleted}
+                  >
                     Not Completed
                   </button>
                 )}

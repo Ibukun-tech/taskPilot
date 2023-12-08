@@ -61,3 +61,21 @@ export async function GET(req: Request, res: Response) {
     return NextResponse.json({ error: err });
   }
 }
+export async function Put(req: Request) {
+  try {
+    const { userId } = auth();
+    const { isCompleted, id } = await req.json();
+    if (!userId) {
+      return NextResponse.json({ error: "unauthorized", status: "401" });
+    }
+    const task = await prisma.task.update({
+      where: {
+        id,
+      },
+      data: {
+        isCompleted,
+      },
+    });
+    NextResponse.json(task);
+  } catch (err) {}
+}

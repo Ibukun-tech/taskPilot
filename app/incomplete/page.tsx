@@ -7,7 +7,8 @@ import { StoreContext } from "../Components/Context/StoreProvider";
 type Props = {};
 
 const page = (props: Props) => {
-  const { incompletedTask } = useContext(StoreContext);
+  const { updateTask, incompletedTask, deleteHandler } =
+    useContext(StoreContext);
   return (
     <div className={styles.completeAll}>
       <h1 className={styles.title}>Important</h1>
@@ -22,11 +23,21 @@ const page = (props: Props) => {
               </p>
               <div className={styles.completeFooter}>
                 {tk.isCompleted ? (
-                  <button className={styles.completeCompleted}>
+                  <button
+                    onClick={() => {
+                      updateTask({ id: tk.id, isCompleted: !tk.isCompleted });
+                    }}
+                    className={styles.completeCompleted}
+                  >
                     Completed
                   </button>
                 ) : (
-                  <button className={styles.completeNotCompleted}>
+                  <button
+                    onClick={() => {
+                      updateTask({ id: tk.id, isCompleted: !tk.isCompleted });
+                    }}
+                    className={styles.completeNotCompleted}
+                  >
                     Not Completed
                   </button>
                 )}

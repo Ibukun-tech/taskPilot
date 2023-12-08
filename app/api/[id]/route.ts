@@ -1,6 +1,7 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import prisma from "@/app/utils/connect";
+
 export async function DELETE(
   req: Request,
   { params }: { params: { id: string } }

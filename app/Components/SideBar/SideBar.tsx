@@ -10,8 +10,11 @@ import styles from "./sideBar.module.css";
 import Menu from "../../utils/Meal";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { UserButton, useClerk } from "@clerk/nextjs";
+import { UserButton, useClerk, useUser } from "@clerk/nextjs";
 const SideBar = () => {
+  const { user } = useUser();
+  // @ts-ignore
+  const { firstName, lastName, imageUrl } = user;
   const router = useRouter();
   const pathName = usePathname();
   const handleClick = (link: string) => {
@@ -33,7 +36,7 @@ const SideBar = () => {
             className={styles.sideImage}
             width={50}
             height={50}
-            src={ima}
+            src={imageUrl}
             alt={""}
           />
         </div>
@@ -41,8 +44,8 @@ const SideBar = () => {
           <UserButton />
         </div>
         <h1 className={styles.sideProfileName}>
-          <span>Ibk</span>
-          <span>oyetunji</span>
+          <span>{firstName}</span>
+          <span>{lastName}</span>
         </h1>
       </div>
 

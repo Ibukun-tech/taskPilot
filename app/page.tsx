@@ -11,7 +11,7 @@ interface Props {
   title: string;
 }
 export default function Home({ title }: Props) {
-  const { task, deleteHandler } = useContext(StoreContext);
+  const { task, deleteHandler, updateTask } = useContext(StoreContext);
   console.log(task);
   const router = useRouter();
 
@@ -28,9 +28,21 @@ export default function Home({ title }: Props) {
               <p className={styles.taskDate}>{tk.date.replaceAll("-", "/")}</p>
               <div className={styles.taskFooter}>
                 {tk.isCompleted ? (
-                  <button className={styles.taskCompleted}>Completed</button>
+                  <button
+                    onClick={() => {
+                      updateTask({ id: tk.id, isCompleted: !tk.isCompleted });
+                    }}
+                    className={styles.taskCompleted}
+                  >
+                    Completed
+                  </button>
                 ) : (
-                  <button className={styles.taskNotCompleted}>
+                  <button
+                    onClick={() => {
+                      updateTask({ id: tk.id, isCompleted: !tk.isCompleted });
+                    }}
+                    className={styles.taskNotCompleted}
+                  >
                     Not Completed
                   </button>
                 )}

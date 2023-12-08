@@ -18,6 +18,7 @@ export const StoreContext = createContext({
   deleteHandler: (id: string) => {},
   incompletedTask: [],
   importantTask: [],
+  updateTask: (task: {}) => {},
 });
 interface Props {
   children: React.ReactNode;
@@ -53,7 +54,16 @@ export const StoreProvider = ({ children }: Props) => {
   useEffect(() => {
     if (user) getAllTask();
   }, [user]);
-
+  const updateTask = async (task: { id: string; isCompleted: Boolean }) => {
+    try {
+      await axios.put("/api", task);
+      toast.success("task updated");
+      getAllTask();
+    } catch (error) {
+      console.log(error);
+      toast.error("task not updated");
+    }
+  };
   // @ts-ignore
   const completedTask = allTask.filter((task) => task.isCompleted === true);
   // @ts-ignore
@@ -68,6 +78,7 @@ export const StoreProvider = ({ children }: Props) => {
     completedTask: completedTask,
     incompletedTask: incompletedTask,
     importantTask: importantTask,
+    updateTask: updateTask,
   };
   return (
     <StoreContext.Provider value={value}>{children}</StoreContext.Provider>

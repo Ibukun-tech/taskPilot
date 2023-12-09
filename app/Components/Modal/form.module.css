@@ -1,2 +1,30 @@
 .container {
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  color: #dbe1e8;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+.formTitle {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 600;
+  text-align: center;
+}
+.formBox {
+  display: flex;
+  flex-direction: column;
+}
+.formLabel {
+  display: block;
+  font-size: 20px;
+}
+.formInputControl {
+  width: 100%;
+  border: none;
+  padding: 1rem;
+  resize: none;
+  background-color: #131313;
+  outline: none;
+  color: #b2becd;
 }

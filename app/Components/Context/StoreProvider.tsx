@@ -63,6 +63,7 @@ export const StoreProvider = ({ children }: Props) => {
       await axios.put("/api", task);
       toast.success("task updated");
       getAllTask();
+      console.log("Getting all Update task");
     } catch (error) {
       console.log(error);
       toast.error("task not updated");

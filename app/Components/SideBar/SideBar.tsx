@@ -12,9 +12,10 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { UserButton, useClerk, useUser } from "@clerk/nextjs";
 const SideBar = () => {
-  const { user } = useUser();
+  const v = useUser();
+  console.log(v);
   // @ts-ignore
-  const { firstName, lastName, imageUrl } = user;
+  // const { firstName, lastName, imageUrl } = v.user;
   const router = useRouter();
   const pathName = usePathname();
   const handleClick = (link: string) => {
@@ -36,7 +37,7 @@ const SideBar = () => {
             className={styles.sideImage}
             width={50}
             height={50}
-            src={imageUrl}
+            src={v.user?.imageUrl || ""}
             alt={""}
           />
         </div>
@@ -44,8 +45,8 @@ const SideBar = () => {
           <UserButton />
         </div>
         <h1 className={styles.sideProfileName}>
-          <span>{firstName}</span>
-          <span>{lastName}</span>
+          <span>{v.user?.firstName}</span>
+          <span>{v.user?.lastName}</span>
         </h1>
       </div>
 

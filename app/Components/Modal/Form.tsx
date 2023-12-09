@@ -52,11 +52,14 @@ const Form = () => {
   };
   return (
     <form onSubmit={submitHandler} className={styles.container}>
-      <h1>Create a task</h1>
+      <h1 className={styles.formTitle}>Create a task</h1>
       <Toaster />
-      <div>
-        <label htmlFor="title">Title</label>
+      <div className={styles.formBox}>
+        <label htmlFor="title" className={styles.formLabel}>
+          Title
+        </label>
         <input
+          className={styles.formInputControl}
           id="title"
           type="text"
           name="title"

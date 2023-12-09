@@ -61,9 +61,10 @@ export async function GET(req: Request, res: Response) {
     return NextResponse.json({ error: err });
   }
 }
-export async function Put(req: Request) {
+export async function PUT(req: Request) {
   try {
     const { userId } = auth();
+    console.log("Its to update the isCompleted");
     const { isCompleted, id } = await req.json();
     if (!userId) {
       return NextResponse.json({ error: "unauthorized", status: "401" });
@@ -76,6 +77,9 @@ export async function Put(req: Request) {
         isCompleted,
       },
     });
-    NextResponse.json(task);
-  } catch (err) {}
+    return NextResponse.json(task);
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json(err);
+  }
 }

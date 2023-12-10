@@ -9,15 +9,24 @@
   flex-direction: column;
   justify-content: space-between;
   color: #6c7983;
+  transition: all 0.3s cubic-bezier(0.53, 0.21, 0, 1);
+}
+.sideBarClose {
+  transform: translateX(-107%);
+}
+.sideBarOpen {
+  transform: translateX(0%);
 }
 .sideToggleNav {
   position: absolute;
-  right: -3rem;
-  top: 5rem;
-  padding: 1rem;
+  right: -73px;
+  top: 1.8rem;
+  padding: 0.6rem 1rem;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
   background-color: #212121;
+  border-right: 2px solid rgba(249, 249, 249, 0.08);
+  border-top: 2px solid rgba(249, 249, 249, 0.08);
 }
 .sideProfile {
   z-index: 1;

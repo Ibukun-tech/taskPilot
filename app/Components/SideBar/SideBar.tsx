@@ -2,11 +2,11 @@
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import ima from "../../../public/gab.jpg";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { StoreContext } from "../Context/StoreProvider";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import styles from "./sideBar.module.css";
 import Menu from "../../utils/Meal";
@@ -14,6 +14,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { UserButton, useClerk, useUser } from "@clerk/nextjs";
 const SideBar = () => {
+  const [nav, setNav] = useState(false);
   const v = useUser();
   console.log(v);
   // @ts-ignore
@@ -31,9 +32,24 @@ const SideBar = () => {
   };
   // const { value } = useContext(StoreContext);
   return (
-    <div className={styles.sideBar}>
-      <div className={styles.sideToggleNav}>
-        <FontAwesomeIcon icon={faBars} />
+    <div
+      className={
+        nav
+          ? styles.sideBar && styles.sideBarOpen
+          : styles.sideBar && styles.sideBarClose
+      }
+    >
+      <div
+        className={styles.sideToggleNav}
+        onClick={() => {
+          setNav(!nav);
+        }}
+      >
+        {nav ? (
+          <FontAwesomeIcon icon={faBars} />
+        ) : (
+          <FontAwesomeIcon icon={faArrowLeft} />
+        )}
       </div>
       <div className={styles.sideProfile}>
         <div className={styles.sideProfileOverlay}></div>

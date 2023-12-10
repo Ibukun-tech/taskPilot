@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 import { useUser } from "@clerk/nextjs";
 
 export const StoreContext = createContext({
+  getAllTask: () => {},
   increaseHandler: () => {},
   task: [],
   modalOff: () => {},
@@ -26,7 +27,14 @@ export const StoreContext = createContext({
 interface Props {
   children: React.ReactNode;
 }
+
 export const StoreProvider = ({ children }: Props) => {
+  const sortThings = (v: any) => {
+    return v.sort((a: any, b: any) => {
+      // @ts-ignore
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
+  };
   const { user } = useUser();
   console.log(user);
   const [calue, setValue] = useState(0);
@@ -37,7 +45,8 @@ export const StoreProvider = ({ children }: Props) => {
     try {
       const res = await axios.get("/api");
       console.log(res);
-      setAllTask(res.data);
+      const sorted = sortThings(res.data);
+      setAllTask(sorted);
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
@@ -70,14 +79,23 @@ export const StoreProvider = ({ children }: Props) => {
     }
   };
   // @ts-ignore
-  const completedTask = allTask.filter((task) => task.isCompleted === true);
-  // @ts-ignore
-  const importantTask = allTask.filter((task) => task.isImportant === true);
-  // @ts-ignore
-  const incompletedTask = allTask.filter((task) => task.isCompleted !== true);
+  const completedTask = sortThings(
+    // @ts-ignore
+    allTask.filter((task) => task.isCompleted === true)
+  );
+
+  const importantTask = sortThings(
+    // @ts-ignore
+    allTask.filter((task) => task.isImportant === true)
+  );
+
+  const incompletedTask = sortThings(
+    // @ts-ignore
+    allTask.filter((task) => task.isCompleted !== true)
+  );
   const increaseHandler = () => {};
 
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
   const modalOn = () => {
     setModal(true);
   };
@@ -93,6 +111,7 @@ export const StoreProvider = ({ children }: Props) => {
     importantTask: importantTask,
     updateTask: updateTask,
     modal: modal,
+    getAllTask: getAllTask,
     modalOff: modalOff,
     modalOn: modalOn,
   };

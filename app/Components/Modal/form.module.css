@@ -54,8 +54,3 @@
   transition: all 1ms;
   border-radius: 5px;
 }
-.formBtn:hover {
-  background-color: yellow;
-
-  color: black;
-}

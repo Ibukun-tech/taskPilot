@@ -1,11 +1,13 @@
 "use client";
 import styles from "./form.module.css";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { StoreContext } from "../Context/StoreProvider";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import toast, { Toaster } from "react-hot-toast";
 const Form = () => {
+  const { getAllTask, modalOff } = useContext(StoreContext);
   const [title, setTitle] = useState("");
   const [decription, setDecription] = useState("");
   const [date, setDate] = useState("");
@@ -46,6 +48,8 @@ const Form = () => {
         toast.error(res.data.error);
       } else {
         toast.success("Task created successfully");
+        getAllTask();
+        modalOff();
       }
     } catch (error) {
       console.log(error);

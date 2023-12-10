@@ -29,3 +29,5 @@
   background-color: #212121;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
 }
+@media screen and (max-width: 768px) {
+}

@@ -1,10 +1,12 @@
 "use client";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import ima from "../../../public/gab.jpg";
 import { useContext } from "react";
 import { StoreContext } from "../Context/StoreProvider";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import styles from "./sideBar.module.css";
 import Menu from "../../utils/Meal";
@@ -30,6 +32,9 @@ const SideBar = () => {
   // const { value } = useContext(StoreContext);
   return (
     <div className={styles.sideBar}>
+      <div className={styles.sideToggleNav}>
+        <FontAwesomeIcon icon={faBars} />
+      </div>
       <div className={styles.sideProfile}>
         <div className={styles.sideProfileOverlay}></div>
         <div>

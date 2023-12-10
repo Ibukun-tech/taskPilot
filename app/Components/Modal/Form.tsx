@@ -2,6 +2,8 @@
 import styles from "./form.module.css";
 import React, { useState } from "react";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import toast, { Toaster } from "react-hot-toast";
 const Form = () => {
   const [title, setTitle] = useState("");
@@ -68,9 +70,12 @@ const Form = () => {
           }}
         />
       </div>
-      <div>
-        <label htmlFor="decription">Description</label>
+      <div className={styles.formBox}>
+        <label htmlFor="decription" className={styles.formLabel}>
+          Description
+        </label>
         <textarea
+          className={styles.formInputControl}
           id="decription"
           name="decription"
           rows={4}
@@ -79,9 +84,12 @@ const Form = () => {
           }}
         ></textarea>
       </div>
-      <div>
-        <label htmlFor="date">date</label>
+      <div className={styles.formBox}>
+        <label htmlFor="date" className={styles.formLabel}>
+          date
+        </label>
         <input
+          className={styles.formInputControl}
           id="date"
           type="date"
           name="date"
@@ -90,9 +98,12 @@ const Form = () => {
           }}
         />
       </div>
-      <div>
-        <label htmlFor="date">completed</label>
+      <div className={styles.formBoxRow}>
+        <label htmlFor="date" className={styles.formLabel}>
+          completed
+        </label>
         <input
+          className={styles.formCheckBtn}
           id="completed"
           value={isCompleted.toString()}
           type="checkbox"
@@ -102,9 +113,12 @@ const Form = () => {
           }}
         />
       </div>
-      <div>
-        <label htmlFor="date">Important</label>
+      <div className={styles.formBoxRow}>
+        <label htmlFor="date" className={styles.formLabel}>
+          Important
+        </label>
         <input
+          className={styles.formCheckBtn}
           id="important"
           value={isImportant.toString()}
           type="checkbox"
@@ -114,8 +128,11 @@ const Form = () => {
           }}
         />
       </div>
-      <div>
-        <button>Submitnnenene</button>
+      <div className={styles.formBtnCon}>
+        <button className={styles.formBtn}>
+          <FontAwesomeIcon icon={faAdd} />
+          <p> Create Task</p>
+        </button>
       </div>
     </form>
   );

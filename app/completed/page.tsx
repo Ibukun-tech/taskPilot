@@ -10,7 +10,6 @@ type Props = {};
 
 const page = (props: Props) => {
   const { completedTask, deleteHandler, updateTask } = useContext(StoreContext);
-  console.log(completedTask);
   return (
     <div className={styles.completeAll}>
       <h1 className={styles.title}>Completed</h1>

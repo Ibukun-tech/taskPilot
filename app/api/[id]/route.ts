@@ -17,10 +17,8 @@ export async function DELETE(
         id,
       },
     });
-    console.log("TASK DELETED", task);
     return NextResponse.json(task);
   } catch (error) {
-    console.log(error, " not deleting task");
     return NextResponse.json({ error: "error deleting task", status: "500" });
   }
 }

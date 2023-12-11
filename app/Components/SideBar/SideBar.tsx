@@ -1,7 +1,5 @@
 "use client";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
-import ima from "../../../public/gab.jpg";
 import { useContext, useState, useEffect } from "react";
 import { StoreContext } from "../Context/StoreProvider";
 import Image from "next/image";
@@ -26,7 +24,6 @@ const SideBar = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  console.log(width);
   // @ts-ignore
   // const { firstName, lastName, imageUrl } = v.user;
   const router = useRouter();
@@ -40,8 +37,6 @@ const SideBar = () => {
       router.push("/signin");
     });
   };
-  console.log();
-  // const { value } = useContext(StoreContext);
   return (
     <div
       className={

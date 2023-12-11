@@ -2,7 +2,7 @@
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import ima from "../../../public/gab.jpg";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { StoreContext } from "../Context/StoreProvider";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,8 +15,18 @@ import { usePathname, useRouter } from "next/navigation";
 import { UserButton, useClerk, useUser } from "@clerk/nextjs";
 const SideBar = () => {
   const [nav, setNav] = useState(false);
+  const [width, setWidth] = useState(window.innerWidth);
   const v = useUser();
-  console.log(v);
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  console.log(width);
   // @ts-ignore
   // const { firstName, lastName, imageUrl } = v.user;
   const router = useRouter();
@@ -30,13 +40,16 @@ const SideBar = () => {
       router.push("/signin");
     });
   };
+  console.log();
   // const { value } = useContext(StoreContext);
   return (
     <div
       className={
-        nav
-          ? styles.sideBar && styles.sideBarOpen
-          : styles.sideBar && styles.sideBarClose
+        width >= 622
+          ? styles.sideBar
+          : nav
+          ? styles.sideBarOpen
+          : styles.sideBarClose
       }
     >
       <div

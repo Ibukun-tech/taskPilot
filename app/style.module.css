@@ -90,3 +90,13 @@
   background-color: #2a2e35;
   color: #f8f8f8;
 }
+/*@media screen and (max-width: 622px) {
+  .all {
+    margin: 10px;
+    margin-right: ;
+    width: 100vw;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+  }
+} */
